@@ -1,3 +1,3 @@
-import userRoute from "./users";
+import bookRoutes from "./books.route"
 
-export const userRoutes = userRoute;
+export const bookRoute = bookRoutes;

@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar()
+  category    String   @db.VarChar()
+  star_rating Int
+  image_url   String   @db.VarChar()
+  description String   @db.VarChar()
+  info        String   @db.VarChar()
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  STAFF
+  PARENTS
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  first_name      String   @db.VarChar()
+  last_name       String   @db.VarChar()
+  email           String   @db.VarChar()
+  role            Role
+  access_token    String?  @db.VarChar()
+  password_hashed String?  @db.VarChar()
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

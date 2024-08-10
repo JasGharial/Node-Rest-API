@@ -1,9 +1,18 @@
 import express from 'express';
-import { userRoutes } from "./routes";
+import { bookRoute } from "./routes";
+import logger from 'morgan';
 
 const app = express();
 
-app.use('/api/users', userRoutes);
+// Middleware to create logs STDOUT
+app.use(logger('combined'));
+
+// Body parsing middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+app.use('/api/books', bookRoute);
 
 const PORT = 3000;
 
